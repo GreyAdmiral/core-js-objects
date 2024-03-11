@@ -18,9 +18,9 @@
  *    shallowCopy({}) => {}
  */
 function shallowCopy(obj) {
-   const result = {};
-   Object.assign(result, obj);
-   return result;
+  const result = {};
+  Object.assign(result, obj);
+  return result;
 }
 
 /**
@@ -35,21 +35,21 @@ function shallowCopy(obj) {
  *    mergeObjects([]) => {}
  */
 function mergeObjects(objects) {
-   const result = {};
+  const result = {};
 
-   objects.forEach((it) => {
-      const entries = Object.entries(it);
+  objects.forEach((it) => {
+    const entries = Object.entries(it);
 
-      entries.forEach(([k, v]) => {
-         if (result[k]) {
-            result[k] += v;
-         } else {
-            result[k] = v;
-         }
-      });
-   });
+    entries.forEach(([k, v]) => {
+      if (result[k]) {
+        result[k] += v;
+      } else {
+        result[k] = v;
+      }
+    });
+  });
 
-   return result;
+  return result;
 }
 
 /**
@@ -66,13 +66,13 @@ function mergeObjects(objects) {
  *
  */
 function removeProperties(obj, keys) {
-   const result = obj;
+  const result = obj;
 
-   keys.forEach((it) => {
-      delete result[it];
-   });
+  keys.forEach((it) => {
+    delete result[it];
+  });
 
-   return result;
+  return result;
 }
 
 /**
@@ -88,7 +88,7 @@ function removeProperties(obj, keys) {
  *    compareObjects({a: 1, b: 2}, {a: 1, b: 3}) => false
  */
 function compareObjects(obj1, obj2) {
-   return JSON.stringify(obj1) === JSON.stringify(obj2);
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 
 /**
@@ -103,7 +103,7 @@ function compareObjects(obj1, obj2) {
  *    isEmptyObject({a: 1}) => false
  */
 function isEmptyObject(obj) {
-   return !Object.keys(obj).length;
+  return !Object.keys(obj).length;
 }
 
 /**
@@ -123,7 +123,7 @@ function isEmptyObject(obj) {
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
 function makeImmutable(obj) {
-   return Object.freeze(obj);
+  return Object.freeze(obj);
 }
 
 /**
@@ -137,16 +137,16 @@ function makeImmutable(obj) {
  *    makeWord({ H:[0], e: [1], l: [2, 3, 8], o: [4, 6], W:[5], r:[7], d:[9]}) => 'HelloWorld'
  */
 function makeWord(lettersObject) {
-   const result = [];
-   const entries = Object.entries(lettersObject);
+  const result = [];
+  const entries = Object.entries(lettersObject);
 
-   entries.forEach(([k, v]) => {
-      v.forEach((it) => {
-         result[it] = k;
-      });
-   });
+  entries.forEach(([k, v]) => {
+    v.forEach((it) => {
+      result[it] = k;
+    });
+  });
 
-   return result.join('');
+  return result.join('');
 }
 
 /**
@@ -164,50 +164,50 @@ function makeWord(lettersObject) {
  *    sellTickets([25, 100]) => false (The seller does not have enough money to give change.)
  */
 function sellTickets(queue) {
-   const COST = 25;
-   const NOMINALS = new Map([
-      [25, 0],
-      [50, 0],
-   ]);
-   let money = 0;
+  const COST = 25;
+  const NOMINALS = new Map([
+    [25, 0],
+    [50, 0],
+  ]);
+  let money = 0;
 
-   for (let i = 0, j = queue.length; i < j; i += 1) {
-      const it = queue[i];
+  for (let i = 0, j = queue.length; i < j; i += 1) {
+    const it = queue[i];
 
-      if (money - (it - COST) < 0) {
-         return false;
-      }
+    if (money - (it - COST) < 0) {
+      return false;
+    }
 
-      let quantityNominals = NOMINALS.get(it);
+    let quantityNominals = NOMINALS.get(it);
 
-      if (it === 50) {
-         if (NOMINALS.get(25)) {
-            money += 25;
-            NOMINALS.set(it, (quantityNominals -= 1));
-         } else {
-            return false;
-         }
-      } else if (it === 100) {
-         let min = NOMINALS.get(25);
-         let max = NOMINALS.get(50);
-
-         if (min && max) {
-            money += 25;
-            NOMINALS.set(25, (min -= 1));
-            NOMINALS.set(50, (max -= 1));
-         } else if (min > 2) {
-            money += 25;
-            NOMINALS.set(25, (min -= 3));
-         } else {
-            return false;
-         }
+    if (it === 50) {
+      if (NOMINALS.get(25)) {
+        money += 25;
+        NOMINALS.set(it, (quantityNominals -= 1));
       } else {
-         money += 25;
-         NOMINALS.set(it, (quantityNominals += 1));
+        return false;
       }
-   }
+    } else if (it === 100) {
+      let min = NOMINALS.get(25);
+      let max = NOMINALS.get(50);
 
-   return true;
+      if (min && max) {
+        money += 25;
+        NOMINALS.set(25, (min -= 1));
+        NOMINALS.set(50, (max -= 1));
+      } else if (min > 2) {
+        money += 25;
+        NOMINALS.set(25, (min -= 3));
+      } else {
+        return false;
+      }
+    } else {
+      money += 25;
+      NOMINALS.set(it, (quantityNominals += 1));
+    }
+  }
+
+  return true;
 }
 
 /**
@@ -224,9 +224,9 @@ function sellTickets(queue) {
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(width, height) {
-   this.width = width;
-   this.height = height;
-   this.getArea = () => this.width * this.height;
+  this.width = width;
+  this.height = height;
+  this.getArea = () => this.width * this.height;
 }
 
 /**
@@ -240,7 +240,7 @@ function Rectangle(width, height) {
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
 function getJSON(obj) {
-   return JSON.stringify(obj);
+  return JSON.stringify(obj);
 }
 
 /**
@@ -255,7 +255,7 @@ function getJSON(obj) {
  *
  */
 function fromJSON(proto, json) {
-   return Object.setPrototypeOf(JSON.parse(json), proto);
+  return Object.setPrototypeOf(JSON.parse(json), proto);
 }
 
 /**
@@ -285,22 +285,22 @@ function fromJSON(proto, json) {
  *    ]
  */
 function sortCitiesArray(arr) {
-   return arr.sort((a, b) => {
-      if (a.country > b.country) {
-         return 1;
-      }
-      if (a.country < b.country) {
-         return -1;
-      }
-      if (a.city > b.city) {
-         return 1;
-      }
-      if (a.city < b.city) {
-         return -1;
-      }
+  return arr.sort((a, b) => {
+    if (a.country > b.country) {
+      return 1;
+    }
+    if (a.country < b.country) {
+      return -1;
+    }
+    if (a.city > b.city) {
+      return 1;
+    }
+    if (a.city < b.city) {
+      return -1;
+    }
 
-      return 0;
-   });
+    return 0;
+  });
 }
 
 /**
@@ -334,7 +334,7 @@ function sortCitiesArray(arr) {
  *   }
  */
 function group(/* array, keySelector, valueSelector */) {
-   throw new Error('Not implemented');
+  throw new Error('Not implemented');
 }
 
 /**
@@ -392,48 +392,48 @@ function group(/* array, keySelector, valueSelector */) {
  */
 
 const cssSelectorBuilder = {
-   element(/* value */) {
-      throw new Error('Not implemented');
-   },
+  element(/* value */) {
+    throw new Error('Not implemented');
+  },
 
-   id(/* value */) {
-      throw new Error('Not implemented');
-   },
+  id(/* value */) {
+    throw new Error('Not implemented');
+  },
 
-   class(/* value */) {
-      throw new Error('Not implemented');
-   },
+  class(/* value */) {
+    throw new Error('Not implemented');
+  },
 
-   attr(/* value */) {
-      throw new Error('Not implemented');
-   },
+  attr(/* value */) {
+    throw new Error('Not implemented');
+  },
 
-   pseudoClass(/* value */) {
-      throw new Error('Not implemented');
-   },
+  pseudoClass(/* value */) {
+    throw new Error('Not implemented');
+  },
 
-   pseudoElement(/* value */) {
-      throw new Error('Not implemented');
-   },
+  pseudoElement(/* value */) {
+    throw new Error('Not implemented');
+  },
 
-   combine(/* selector1, combinator, selector2 */) {
-      throw new Error('Not implemented');
-   },
+  combine(/* selector1, combinator, selector2 */) {
+    throw new Error('Not implemented');
+  },
 };
 
 module.exports = {
-   shallowCopy,
-   mergeObjects,
-   removeProperties,
-   compareObjects,
-   isEmptyObject,
-   makeImmutable,
-   makeWord,
-   sellTickets,
-   Rectangle,
-   getJSON,
-   fromJSON,
-   group,
-   sortCitiesArray,
-   cssSelectorBuilder,
+  shallowCopy,
+  mergeObjects,
+  removeProperties,
+  compareObjects,
+  isEmptyObject,
+  makeImmutable,
+  makeWord,
+  sellTickets,
+  Rectangle,
+  getJSON,
+  fromJSON,
+  group,
+  sortCitiesArray,
+  cssSelectorBuilder,
 };
